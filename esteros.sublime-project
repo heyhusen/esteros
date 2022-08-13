@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"LSP": {
+			"LSP-eslint": {
+				"settings": {
+					"workingDirectories": [
+						"./api-gateway",
+						"./product-service",
+						"./cart-service",
+						"./order-service"
+					]
+				}
+			}
+		}
+	}
+}

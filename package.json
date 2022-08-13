@@ -1,0 +1,19 @@
+{
+  "name": "esteros",
+  "version": "0.1.0",
+  "scripts": {
+  	"dev": "pnpm -r start:dev",
+  	"prebuild": "pnpm -r prebuild",
+  	"build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "test": "pnpm -r test"
+  },
+  "author": {
+  	"name": "Ahmad Husen",
+  	"email": "hi@husen.id",
+  	"url": "https://husen.id"
+  },
+  "license": "Apache-2.0",
+  "private": true
+}

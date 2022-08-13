@@ -1,0 +1,13 @@
+{
+	"name": "@esteros/types",
+	"version": "0.1.0",
+	"description": "A TypeScript types for Esteros",
+	"main": "index.js",
+	"private": true,
+	"license": "Apache-2.0",
+	"author": {
+		"name": "Ahmad Husen",
+		"email": "hi@husen.id",
+		"url": "https://husen.id"
+	}
+}

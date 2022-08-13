@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    name: Build (Node v${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['16', '18']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up pnpm v7
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.x.x
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Run linter
+        run: pnpm lint
+
+      - name: Format code
+        run: pnpm format
+
+      - name: Run build
+        run: pnpm build
+
+      - name: Run tests
+        run: |
+          pnpm test
+
