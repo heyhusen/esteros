@@ -1,0 +1,293 @@
+openapi: 3.0.0
+info:
+  title: Esteros API
+  version: 0.1.0
+  description: Specification for (simple) Esteros API.
+  contact:
+    name: Ahmad Husen
+    url: 'https://husen.id'
+    email: hi@husen.id
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'http://localhost:3000'
+    description: Local
+paths:
+  /products:
+    get:
+      summary: Get all products.
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+      operationId: get-products
+      parameters:
+        - $ref: '#/components/parameters/page-number'
+        - $ref: '#/components/parameters/page-size'
+      description: List all products. Optionally filtered with offset and limit.
+  '/products/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Required id parameter
+    get:
+      summary: Get one product.
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      operationId: get-products-id
+      description: Get a detailed product.
+  /carts:
+    get:
+      summary: Get chart.
+      tags:
+        - cart
+      responses:
+        '200':
+          $ref: '#/components/responses/Cart'
+      operationId: get-carts
+      description: Get cart for current user.
+      parameters: []
+      security:
+        - cookieAuth: []
+    post:
+      summary: Add item into cart.
+      operationId: post-carts
+      responses:
+        '200':
+          $ref: '#/components/responses/Cart'
+      tags:
+        - cart
+      parameters: []
+      description: 'Add item(s) into the cart. When same product already added into the cart, only the quantity is added.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                quantity:
+                  type: integer
+              required:
+                - product_id
+                - quantity
+      security:
+        - cookieAuth: []
+  /carts/empty:
+    post:
+      summary: Empty cart.
+      operationId: post-carts-empty
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - cart
+      description: Empty filled cart.
+      parameters: []
+      security:
+        - cookieAuth: []
+  /orders:
+    post:
+      summary: Create an order.
+      operationId: post-orders
+      tags:
+        - order
+      description: Place order for products that are already in the cart.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  confirmation_number:
+                    type: string
+                  tracking_number:
+                    type: string
+                required:
+                  - confirmation_number
+                  - tracking_number
+      parameters: []
+      security:
+        - cookieAuth: []
+components:
+  schemas:
+    Product:
+      title: Product
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        description:
+          type: string
+        sku:
+          type: string
+        price:
+          type: number
+        photo:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          readOnly: true
+        updated_at:
+          type: string
+          readOnly: true
+      required:
+        - id
+        - name
+        - sku
+        - price
+        - photo
+        - created_at
+        - updated_at
+    Cart:
+      title: Cart
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        shipping_cost:
+          type: number
+        total_price:
+          type: number
+        products:
+          allOf:
+            - $ref: '#/components/schemas/Product'
+            - type: object
+              properties:
+                quantity:
+                  type: integer
+              required:
+                - quantity
+        created_at:
+          type: string
+          readOnly: true
+        updated_at:
+          type: string
+          readOnly: true
+      required:
+        - id
+        - shipping_cost
+        - total_price
+        - created_at
+        - updated_at
+    Order:
+      title: Order
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          readOnly: true
+        updated_at:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+        address:
+          type: object
+          required:
+            - street
+            - zip_code
+            - city
+            - state
+            - country
+          properties:
+            street:
+              type: string
+            zip_code:
+              type: integer
+            city:
+              type: string
+            state:
+              type: string
+            country:
+              type: string
+        credit_card:
+          type: object
+          required:
+            - number
+            - expiration_month
+            - expiration_year
+            - ccv
+          properties:
+            number:
+              type: string
+            expiration_month:
+              type: integer
+            expiration_year:
+              type: integer
+            ccv:
+              type: integer
+      required:
+        - id
+        - created_at
+        - updated_at
+        - email
+        - address
+        - credit_card
+  parameters:
+    page-number:
+      name: 'page[number]'
+      in: query
+      schema:
+        type: integer
+      description: Page number
+    page-size:
+      name: 'page[size]'
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Size per page
+  responses:
+    Cart:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Cart'
+  securitySchemes:
+    cookieAuth:
+      name: user_id
+      type: apiKey
+      in: cookie
+      description: ''
+tags:
+  - name: cart
+  - name: order
+  - name: product

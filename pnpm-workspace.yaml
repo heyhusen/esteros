@@ -1,6 +1,3 @@
 packages:
-  - "api-gateway"
-  - "product-service"
-  - "cart-service"
-  - "order-service"
+  - "src/*"
   - "types"

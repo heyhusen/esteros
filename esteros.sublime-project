@@ -9,10 +9,12 @@
 			"LSP-eslint": {
 				"settings": {
 					"workingDirectories": [
-						"./api-gateway",
-						"./product-service",
-						"./cart-service",
-						"./order-service"
+						"./src/api-gateway",
+						"./src/product-service",
+						"./src/cart-service",
+						"./src/order-service",
+						"./src/docs",
+						"./types"
 					]
 				}
 			}

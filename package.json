@@ -1,19 +1,31 @@
 {
-  "name": "esteros",
   "version": "0.1.0",
   "scripts": {
-  	"dev": "pnpm -r start:dev",
-  	"prebuild": "pnpm -r prebuild",
-  	"build": "pnpm -r build",
+    "setup": "ts-node setup.ts",
+    "start:dev": "pnpm -r --filter=./src/* --workspace-concurrency=10 start:dev",
+    "start:prod": "pnpm -r --filter=./src/* --workspace-concurrency=10 start:prod",
+    "prebuild": "pnpm -r prebuild",
+    "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
     "test": "pnpm -r test"
   },
   "author": {
-  	"name": "Ahmad Husen",
-  	"email": "hi@husen.id",
-  	"url": "https://husen.id"
+    "name": "Ahmad Husen",
+    "email": "hi@husen.id",
+    "url": "https://husen.id"
   },
   "license": "Apache-2.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.150.0",
+    "@esteros/types": "workspace:types",
+    "redis-om": "^0.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
 }
