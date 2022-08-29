@@ -7,11 +7,12 @@ microservices applications and a front-end. This app is a web-based online ice
 cream shop where users can search for the ice cream they like, add it to their
 cart, and purchase it.
 
-This app was created to demonstrate the use of Redis in modern web development.
+This app was created to demonstrate the use of Redis and Minio in modern
+microservices based web development.
 
 ![Esteros homepage screenshot](./data/screenshots/1.png)
 
-[Click here](./data/photos/) for more screenshots.
+[Click here](./data/screenshots) for more screenshots.
 
 ## How it works
 
@@ -29,14 +30,6 @@ talk to each other over [Redis Pub/Sub](https://redis.io/docs/manual/pubsub/).
 | [product-service](./src/product-service) | Node.js (TypeScript) | Provides the list of products from a RedisJSON and ability to search products and get individual products.                                     |
 | [cart-service](./src/currencyservice)    | Node.js (TypeScript) | Add the product to the Redis Cache for a user with a specific session ID, then make it available for that user.                                |
 | [order-service](./src/paymentservice)    | Node.js (TypeScript) | Create an order from an existing cart with a mocked data.                                                                                      |
-
-### How the data is stored
-
-Refer to [this example](https://github.com/redis-developer/basic-analytics-dashboard-redis-bitmaps-nodejs#how-the-data-is-stored) for a more detailed example of what you need for this section.
-
-### How the data is accessed
-
-Refer to [this example](https://github.com/redis-developer/basic-analytics-dashboard-redis-bitmaps-nodejs#how-the-data-is-accessed) for a more detailed example of what you need for this section.
 
 ## How to run it locally?
 
