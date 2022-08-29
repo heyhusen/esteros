@@ -1,0 +1,22 @@
+{
+	"app_name": "Esteros",
+	"description": "Simple web-based online ice cream shop",
+	"hidden": "false",
+	"rank": "26",
+	"type": "Full App",
+	"contributed_by": "Community",
+	"repo_url": "https://github.com/hapakaien/esteros",
+	"download_url": "https://github.com/hapakaien/esteros/archive/refs/heads/main.zip",
+	"hosted_url": "",
+	"quick_deploy": "",
+	"deploy_buttons": [],
+	"language": ["TypeScript"],
+	"redis_commands": ["FT.CREATE", "JSON.SET"],
+	"redis_features": ["pub/sub", "database", "caching"],
+	"redis_modules": ["RediJSON", "RediSearch"],
+	"app_image_urls": ["https://github.com/hapakaien/esteros/raw/main/data/screenshots/1.png", "https://github.com/hapakaien/esteros/raw/main/data/screenshots/2.png", "https://github.com/hapakaien/esteros/raw/main/data/screenshots/3.png", "https://github.com/hapakaien/esteros/raw/main/data/screenshots/4.png"],
+	"youtube_url": "",
+	"special_tags": [],
+	"verticals": ["Technology"],
+	"markdown": "https://github.com/hapakaien/esteros/raw/main/README.md"
+}
