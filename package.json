@@ -1,5 +1,12 @@
 {
   "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Ahmad Husen",
+    "email": "hi@husen.id",
+    "url": "https://husen.id"
+  },
   "scripts": {
     "setup": "ts-node setup.ts",
     "start:dev": "pnpm -r --filter=./src/* --workspace-concurrency=10 start:dev",
@@ -10,16 +17,10 @@
     "format": "pnpm -r format",
     "test": "pnpm -r test"
   },
-  "author": {
-    "name": "Ahmad Husen",
-    "email": "hi@husen.id",
-    "url": "https://husen.id"
-  },
-  "license": "Apache-2.0",
-  "private": true,
   "dependencies": {
     "@aws-sdk/client-s3": "^3.150.0",
     "@esteros/types": "workspace:types",
+    "html-entities": "^2.3.3",
     "redis-om": "^0.3.6"
   },
   "devDependencies": {

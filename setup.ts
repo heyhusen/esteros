@@ -2,6 +2,7 @@ import type { Product as IProduct } from "@esteros/types";
 import { Client, Entity, Schema } from "redis-om";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { readFileSync } from "fs";
+import { encode } from "html-entities";
 
 async function uploadToS3(path: string): Promise<string> {
 	const s3 = new S3Client({
@@ -34,7 +35,7 @@ async function uploadToS3(path: string): Promise<string> {
 }
 
 async function init() {
-	console.log('Uploading all data.');
+	console.log("Uploading all data.");
 
 	const data: Omit<IProduct, "id" | "created_at" | "updated_at">[] = [
 		{
@@ -98,6 +99,9 @@ async function init() {
 
 		await productRepository.createAndSave({
 			...item,
+			description: encode(
+				'Photo by <a href="https://unsplash.com/@najlacam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">NajlaCam</a> on <a href="https://unsplash.com/s/photos/najlacam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
+			),
 			photo: uploadedPhotoUrl,
 			created_at: today.toISOString(),
 			updated_at: today.toISOString(),
@@ -106,7 +110,7 @@ async function init() {
 
 	await redis.close();
 
-	console.log('All data uploaded successfully.')
+	console.log("All data uploaded successfully.");
 }
 
 init();

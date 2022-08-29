@@ -1,0 +1,11 @@
+{
+    "eslint.workingDirectories": [
+			"./src/api-gateway",
+			"./src/product-service",
+			"./src/cart-service",
+			"./src/order-service",
+			"./src/front-end",
+			"./src/docs",
+			"./types"
+    ]
+}

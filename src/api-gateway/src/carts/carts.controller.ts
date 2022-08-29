@@ -59,7 +59,7 @@ export class CartsController {
 				sameSite: process.env.NODE_ENV === 'production',
 				httpOnly: true,
 				path: '/',
-				maxAge: 604800, // 7 days
+				maxAge: 172800000, // 2 days
 			});
 		}
 

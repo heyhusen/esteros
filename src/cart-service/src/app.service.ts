@@ -35,8 +35,15 @@ export class AppService implements OnModuleInit {
 	 * @return {Promise<ICart>}        A cart
 	 */
 	async serializeCart(entity: Cart): Promise<ICart> {
-		const { entityId, created_at, updated_at, products, ...data } =
-			entity.toJSON() as Cart;
+		const {
+			entityId,
+			created_at,
+			updated_at,
+			products,
+			shipping_cost,
+			total_price,
+			...data
+		} = entity.toJSON() as Cart;
 
 		const pattern: PubSubPattern = { cmd: 'getProductById' };
 
@@ -58,6 +65,8 @@ export class AppService implements OnModuleInit {
 					};
 				}),
 			),
+			shipping_cost: parseFloat(shipping_cost.toFixed(2)),
+			total_price: parseFloat(total_price.toFixed(2)),
 			...data,
 		};
 	}
@@ -105,9 +114,11 @@ export class AppService implements OnModuleInit {
 			}),
 		);
 
-		return cost.reduce(
+		const shippingCost = cost.reduce(
 			(previousValue, currentvalue) => previousValue + currentvalue,
 		);
+
+		return parseFloat(shippingCost.toFixed(2));
 	}
 
 	/**
@@ -139,7 +150,7 @@ export class AppService implements OnModuleInit {
 				(previousValue, currentvalue) => previousValue + currentvalue,
 			);
 
-		return totalPrice;
+		return parseFloat(totalPrice.toFixed(2));
 	}
 
 	/**

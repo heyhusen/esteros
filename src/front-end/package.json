@@ -1,0 +1,58 @@
+{
+	"name": "@esteros/front-end",
+	"version": "0.1.0",
+	"private": true,
+	"description": "A front-end for Esteros",
+	"license": "Apache-2.0",
+	"author": {
+		"name": "Ahmad Husen",
+		"email": "hi@husen.id",
+		"url": "https://husen.id"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "vite build",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "eslint --fix .",
+		"start:dev": "vite dev",
+		"start:prod": "vite preview",
+		"preview": "vite preview",
+		"tes": "playwright test"
+	},
+	"devDependencies": {
+		"@esteros/types": "workspace:../../types",
+		"@playwright/test": "^1.25.0",
+		"@steeze-ui/heroicons": "^1.1.1",
+		"@steeze-ui/svelte-icon": "^1.3.1",
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"@tailwindcss/forms": "^0.5.2",
+		"@tailwindcss/typography": "^0.5.3",
+		"@types/cookie": "^0.5.1",
+		"@typescript-eslint/eslint-plugin": "^5.27.0",
+		"@typescript-eslint/parser": "^5.27.0",
+		"autoprefixer": "^10.4.7",
+		"cssnano": "^5.1.13",
+		"daisyui": "^2.18.1",
+		"eslint": "^8.16.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"postcss": "^8.4.14",
+		"postcss-load-config": "^4.0.1",
+		"prettier": "^2.6.2",
+		"prettier-plugin-svelte": "^2.7.0",
+		"svelte": "^3.44.0",
+		"svelte-check": "^2.7.1",
+		"svelte-preprocess": "^4.10.7",
+		"tailwindcss": "^3.1.5",
+		"tslib": "^2.3.1",
+		"typescript": "^4.7.4",
+		"vite": "^3.0.4"
+	},
+	"dependencies": {
+		"cookie": "^0.5.0",
+		"html-entities": "^2.3.3"
+	}
+}

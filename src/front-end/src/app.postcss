@@ -1,0 +1,30 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply bg-white text-gray-600 text-base font-sans antialiased;
+		@apply tracking-normal min-h-screen;
+	}
+}
+
+@layer components {
+	.wrapper {
+		@apply w-full max-w-5xl mx-auto;
+
+		&--body {
+			@apply min-h-screen max-w-none flex flex-col gap-4 md:gap-6 lg:gap-8;
+			@apply xl:gap-10;
+		}
+
+		&--container {
+			@apply py-6 md:py-8 lg:py-10 px-4 md:px-6 lg:px-8 xl:px-0;
+		}
+	}
+}
