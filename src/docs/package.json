@@ -22,7 +22,7 @@
 	"dependencies": {
 		"express": "^4.18.1",
 		"swagger-ui-express": "^4.5.0",
-		"yaml": "^2.1.1"
+		"yaml": "^2.2.2"
 	},
 	"devDependencies": {
 		"@tsconfig/node16-strictest": "^1.0.3",
